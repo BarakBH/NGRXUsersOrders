@@ -11,7 +11,7 @@ export class UserService {
     return of([
       { id: 1, name: 'Barak' },
       { id: 2, name: 'Ben' },
-      { id: 3, name: 'Noa' }
+      { id: 3, name: 'hamo' }
     ]).pipe(
       delay(400) // I want to stimulate like api call so a lil bit of delay
     );
@@ -22,7 +22,7 @@ export class UserService {
     const mock: Record<number, UserDetails> = {
       1: { id: 1, email: 'barak@example.com', phone: '050-4545445', address: 'Jerusalem' },
       2: { id: 2, email: 'ben@example.com', phone: '050-2014041', address: 'Tel-Aviv' },
-      3: { id: 3, email: 'noa@example.com', phone: '054-5045050', address: 'Ramat-Gan' }
+      3: { id: 3, email: 'hamo@example.com', phone: '054-5045050', address: 'Ramat-Gan' }
     };
 
     return of(mock[userId] ?? { id: userId, email: 'n/a', phone: 'n/a', address: 'n/a' })

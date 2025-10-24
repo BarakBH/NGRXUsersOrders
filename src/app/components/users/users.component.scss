@@ -1,25 +1,68 @@
 .users {
-    padding: 1rem;
+    display: grid;
+    gap: 16px;
 
     &__list {
         display: flex;
-        gap: .5rem;
+        gap: 8px;
         flex-wrap: wrap;
-        margin-bottom: 1rem;
     }
 
     &__selected {
-        margin: .5rem 0 1rem;
+        margin: 4px 0 4px;
+        color: var(--muted);
+
+        strong {
+            color: var(--text);
+        }
     }
 
     &__controls {
-        display: flex;
-        gap: .5rem;
-        align-items: center;
+        display: grid;
+        gap: 8px;
+        grid-template-columns: 1fr auto auto;
+
+        @media (max-width: 520px) {
+            grid-template-columns: 1fr;
+
+            button {
+                width: 100%;
+            }
+        }
     }
 
     &__input {
-        width: 280px;
-        max-width: 100%;
+        min-width: 220px;
+        color: white;
+
+        // Angular Material input internal elements
+        input.mat-mdc-input-element {
+            color: white !important;
+            caret-color: var(--accent);
+        }
+
+        // placeholder color
+        .mat-mdc-form-field-infix::placeholder,
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.6) !important;
+        }
+
+        // label text when floating
+        .mdc-floating-label {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        // underline / outline
+        .mdc-notched-outline__leading,
+        .mdc-notched-outline__notch,
+        .mdc-notched-outline__trailing {
+            border-color: rgba(255, 255, 255, 0.3) !important;
+        }
+
+        // input background (optional subtle glass)
+        .mat-mdc-form-field-flex {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
     }
 }

@@ -51,7 +51,7 @@ import { UserTotalComponent } from './components/user-total/user-total.component
       UsersEffects,
       OrdersEffects
     ]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode(), trace: true, traceLimit: 25 })
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode(), trace: isDevMode(), traceLimit: 25 })
   ],
   providers: [],
   bootstrap: [AppComponent]
