@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, switchMap } from 'rxjs/operators';
-import { loadUsers, loadUsersSuccess } from './users.actions';
+import { catchError, map, switchMap } from 'rxjs/operators';
+import { loadUsers, loadUsersSuccess, setSelectedUser, loadUserDetails, loadUserDetailsSuccess, loadUserDetailsFailure } from './users.actions';
 import { UserService } from 'src/app/services/user.service';
+import { EMPTY, of } from 'rxjs';
 
 
 @Injectable()
@@ -16,6 +17,32 @@ export class UsersEffects {
             switchMap(() => this.userService.getUsers().pipe( // switchmap cancel our latest search so perfect for stopping if new arrives
                 map((users) => loadUsersSuccess({ users }))
             ))
+        )
+    );
+
+    selectionChanges$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(setSelectedUser),
+            switchMap(({ userId }) => {
+                if (userId == null) {
+                    return EMPTY;
+                }
+                return of(loadUserDetails({ userId }));
+            })
+        )
+    );
+
+
+    fetchDetails$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(loadUserDetails),
+            // switchMap cancels the previous in-flight call when a new loadUserDetails arrives
+            switchMap(({ userId }) =>
+                this.userService.getUserDetails(userId).pipe(
+                    map(details => loadUserDetailsSuccess({ details })),
+                    catchError(() => of(loadUserDetailsFailure({ error: 'Failed to load user details' })))
+                )
+            )
         )
     );
 

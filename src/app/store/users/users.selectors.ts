@@ -21,3 +21,18 @@ export const selectSelectedUser = createSelector(
     selectSelectedUserId,
     (entities, id) => (id != null ? entities[id] ?? null : null)
 );
+
+export const selectSelectedUserDetails = createSelector(
+    selectUsersState,
+    s => s.selectedUserDetails
+);
+
+export const selectLoadingUserDetails = createSelector(
+    selectUsersState,
+    s => s.loadingUserDetails
+);
+
+export const selectUserDetailsError = createSelector(
+    selectUsersState,
+    s => s.userDetailsError
+);

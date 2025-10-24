@@ -13,7 +13,7 @@ export class OrderService {
       { id: 105, userId: 3, total: 200 },
       { id: 106, userId: 3, total: 70 },
     ]).pipe(
-      delay(700)  // simulate api call
+      delay(400)  // simulate api call
     );
   }
 }
