@@ -1,7 +1,8 @@
 .app-grid {
     display: grid;
-    gap: 16px;
+    gap: 24px; /* Increased gap between cards */
     grid-template-columns: 1fr 1fr;
+    margin-top: 20px; /* Additional top margin */
 
     @media (max-width: 960px) {
         grid-template-columns: 1fr;

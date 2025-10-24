@@ -16,6 +16,16 @@ export const selectOrdersForSelectedUser = createSelector(
 );
 
 
+export const selectLoadingOrders = createSelector(
+    selectOrdersState,
+    s => s.loadingOrders
+);
+
+export const selectOrdersError = createSelector(
+    selectOrdersState,
+    s => s.ordersError
+);
+
 export const selectSelectedUserNameAndTotal = createSelector(
     selectSelectedUser,
     selectOrdersForSelectedUser,

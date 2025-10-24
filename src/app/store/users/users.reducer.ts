@@ -1,13 +1,15 @@
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 import { User, UserDetails } from 'src/app/models/user.models';
-import { loadUsersSuccess, setSelectedUser, upsertUser, updateUser, deleteUser, loadUserDetails, loadUserDetailsSuccess, loadUserDetailsFailure } from './users.actions';
+import { loadUsers, loadUsersSuccess, loadUsersFailure, setSelectedUser, upsertUser, updateUser, deleteUser, loadUserDetails, loadUserDetailsSuccess, loadUserDetailsFailure } from './users.actions';
 
 export interface UsersState extends EntityState<User> {
     selectedUserId: number | null;
     selectedUserDetails: UserDetails | null;
     loadingUserDetails: boolean;
     userDetailsError: string | null;
+    loadingUsers: boolean;
+    usersError: string | null;
 }
 
 export const usersAdapter = createEntityAdapter<User>({ // (O(1) search)
@@ -18,15 +20,19 @@ export const initialState: UsersState = usersAdapter.getInitialState({
     selectedUserId: null,
     selectedUserDetails: null,
     loadingUserDetails: false,
-    userDetailsError: null
+    userDetailsError: null,
+    loadingUsers: false,
+    usersError: null
 });
 
 
 export const usersReducer = createReducer(
     initialState,
 
-    // load
-    on(loadUsersSuccess, (state, { users }) => usersAdapter.setAll(users, state)),
+    // load users
+    on(loadUsers, (state) => ({ ...state, loadingUsers: true, usersError: null })),
+    on(loadUsersSuccess, (state, { users }) => usersAdapter.setAll(users, { ...state, loadingUsers: false })),
+    on(loadUsersFailure, (state, { error }) => ({ ...state, loadingUsers: false, usersError: error })),
 
     // select
     on(setSelectedUser, (state, { userId }) => ({

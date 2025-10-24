@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { delay, Observable, of } from 'rxjs';
 import { User, UserDetails } from '../models/user.models';
+import { API_DELAYS } from '../constants/api.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class UserService {
       { id: 2, name: 'Ben' },
       { id: 3, name: 'hamo' }
     ]).pipe(
-      delay(400) // I want to stimulate like api call so a lil bit of delay
+      delay(API_DELAYS.USERS) // I want to stimulate like api call so a lil bit of delay
     );
   }
 
@@ -27,7 +28,7 @@ export class UserService {
 
     return of(mock[userId] ?? { id: userId, email: 'n/a', phone: 'n/a', address: 'n/a' })
       .pipe(
-        delay(1200)//i think its long enough to show cancelation although its clearly switchmap job
+        delay(API_DELAYS.USER_DETAILS)//i think its long enough to show cancelation although its clearly switchmap job
       );
   }
 
