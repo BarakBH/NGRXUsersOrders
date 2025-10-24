@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -43,6 +44,7 @@ import { UserTotalComponent } from './components/user-total/user-total.component
     MatFormFieldModule,
     MatInputModule,
     MatDividerModule,
+    MatSnackBarModule,
     StoreModule.forRoot({
       users: usersReducer,
       orders: ordersReducer

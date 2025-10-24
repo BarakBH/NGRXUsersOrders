@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { delay, Observable, of } from 'rxjs';
 import { Order } from '../models/order.models';
+import { API_DELAYS } from '../constants/api.constants';
 
 @Injectable({ providedIn: 'root' })
 export class OrderService {
@@ -13,7 +14,7 @@ export class OrderService {
       { id: 105, userId: 3, total: 200 },
       { id: 106, userId: 3, total: 70 },
     ]).pipe(
-      delay(400)  // simulate api call
+      delay(API_DELAYS.ORDERS)  // simulate api call
     );
   }
 }

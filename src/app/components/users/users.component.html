@@ -1,5 +1,13 @@
 <div class="users">
-  <div class="users__list">
+  <div class="users__loading" *ngIf="(loadingUsers$ | async)">
+    <p>Loading users...</p>
+  </div>
+
+  <div class="users__error" *ngIf="(usersError$ | async) as error">
+    <p style="color: red;">Error: {{ error }}</p>
+  </div>
+
+  <div class="users__list" *ngIf="!(loadingUsers$ | async)">
     <button
       *ngFor="let u of (users$ | async); trackBy: trackById"
       mat-raised-button

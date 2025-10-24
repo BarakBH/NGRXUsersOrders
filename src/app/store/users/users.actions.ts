@@ -11,6 +11,11 @@ export const loadUsersSuccess = createAction(
     props<{ users: User[] }>()
 );
 
+export const loadUsersFailure = createAction(
+    '[Users] Load Users Failure',
+    props<{ error: string }>()
+);
+
 export const setSelectedUser = createAction(
     '[Users] Set Selected User',
     props<{ userId: number | null }>()

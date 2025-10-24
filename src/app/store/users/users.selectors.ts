@@ -32,7 +32,12 @@ export const selectLoadingUserDetails = createSelector(
     s => s.loadingUserDetails
 );
 
-export const selectUserDetailsError = createSelector(
+export const selectLoadingUsers = createSelector(
     selectUsersState,
-    s => s.userDetailsError
+    s => s.loadingUsers
+);
+
+export const selectUsersError = createSelector(
+    selectUsersState,
+    s => s.usersError
 );
