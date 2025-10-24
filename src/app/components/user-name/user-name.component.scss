@@ -1,0 +1,13 @@
+.user-name {
+    display: flex;
+    gap: .5rem;
+    align-items: baseline;
+
+    .label {
+        opacity: .7;
+    }
+
+    .value {
+        font-size: 1.1rem;
+    }
+}
