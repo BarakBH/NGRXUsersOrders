@@ -5,16 +5,25 @@
     <button
       *ngFor="let u of (users$ | async); trackBy: trackById"
       mat-raised-button
-      (click)="selectUser(u.id)">
+      (click)="onUserClick(u)">
       {{ u.name }}
     </button>
   </div>
 
-  <div class="users__selected" *ngIf="(selectedUser$ | async) as sel">
-    <p>Selected: <strong>{{ sel.name }}</strong></p>
+  <div class="users__selected" *ngIf="(selectedUser$ | async) as sel; else noSel">
+    <p>Selected user: <strong>{{ sel.name }}</strong></p>
   </div>
+  <ng-template #noSel>
+    <p>No user selected</p>
+  </ng-template>
 
-  <div class="users__clear">
-    <button mat-stroked-button (click)="selectUser(null)">Clear selection</button>
+  <div class="users__controls">
+    <mat-form-field appearance="outline" class="users__input">
+      <mat-label>Name</mat-label>
+      <input matInput [(ngModel)]="nameInput" placeholder="Enter name..." />
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" (click)="save()">Save</button>
+    <button mat-stroked-button (click)="clearSelection()">Clear selection</button>
   </div>
 </div>

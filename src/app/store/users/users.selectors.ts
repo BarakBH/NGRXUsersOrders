@@ -15,11 +15,7 @@ export const selectUserEntities = createSelector(
     selectEntities
 );
 
-export const selectSelectedUserId = createSelector(
-    selectUsersState,
-    (s) => s.selectedUserId
-);
-
+export const selectSelectedUserId = createSelector(selectUsersState, s => s.selectedUserId);
 export const selectSelectedUser = createSelector(
     selectUserEntities,
     selectSelectedUserId,

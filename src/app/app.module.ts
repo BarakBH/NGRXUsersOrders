@@ -13,6 +13,11 @@ import { UsersComponent } from './components/users/users.component';
 
 import { usersReducer } from './store/users/users.reducer';
 import { UsersEffects } from './store/users/users.effects';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 @NgModule({
@@ -25,11 +30,16 @@ import { UsersEffects } from './store/users/users.effects';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDividerModule,
     StoreModule.forRoot( { 
       users: usersReducer 
     }, {}),
     EffectsModule.forRoot([UsersEffects]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode(), trace: true, traceLimit: 25 })
   ],
   providers: [],
   bootstrap: [AppComponent]
