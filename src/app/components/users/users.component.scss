@@ -9,6 +9,17 @@
     }
 
     &__selected {
-        margin-top: .75rem;
+        margin: .5rem 0 1rem;
+    }
+
+    &__controls {
+        display: flex;
+        gap: .5rem;
+        align-items: center;
+    }
+
+    &__input {
+        width: 280px;
+        max-width: 100%;
     }
 }
