@@ -1,0 +1,20 @@
+<div class="users">
+  <h2>Users</h2>
+
+  <div class="users__list">
+    <button
+      *ngFor="let u of (users$ | async); trackBy: trackById"
+      mat-raised-button
+      (click)="selectUser(u.id)">
+      {{ u.name }}
+    </button>
+  </div>
+
+  <div class="users__selected" *ngIf="(selectedUser$ | async) as sel">
+    <p>Selected: <strong>{{ sel.name }}</strong></p>
+  </div>
+
+  <div class="users__clear">
+    <button mat-stroked-button (click)="selectUser(null)">Clear selection</button>
+  </div>
+</div>
