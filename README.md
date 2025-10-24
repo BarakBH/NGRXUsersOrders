@@ -1,27 +1,34 @@
 # NGRXUsersOrders
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.14.
+Angular + NgRx home exercise demonstrating clean state management, derived selectors, and effect-driven I/O with cancellation.
 
-## Development server
+## Architecture
+- **NgRx Entity** for normalized Users and Orders.
+- **Effects** handle all I/O (no services in components).
+- **Selectors** provide view models (no ad-hoc derivations in UI).
+- **Container/presentational split:** `user-orders` container + `user-name`, `user-total` dumb components.
+- **OnPush** everywhere; lists use `trackBy`.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Features
+- Load Users & Orders on startup.
+- Select a user, edit name; **Save** updates same `id`. **Clear** → next Save creates a new user.
+- Derived selectors: selected user’s orders and aggregated total.
+- **Cancellation:** selecting a new user cancels the previous details request using `switchMap`.
 
-## Code scaffolding
+## Cancellation Explained
+1. `setSelectedUser({ userId })` dispatches.
+2. Effect dispatches `loadUserDetails({ userId })`.
+3. Effect listens to `loadUserDetails` and calls `userService.getUserDetails(userId)` inside **`switchMap`**.
+4. If selection changes mid-flight, `switchMap` **unsubscribes** the prior HTTP call → no stale updates.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Security & Perf
+- No secrets/tokens in store or code.
+- Runtime immutability/serializability checks ON.
+- Pure reducers; deterministic updates; idempotent by `id`.
+- DevTools enabled only in dev; tracing limited.
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Run
+```bash
+npm install
+ng serve
