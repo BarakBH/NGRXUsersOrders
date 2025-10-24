@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, firstValueFrom } from 'rxjs';
-import { loadUsers, setSelectedUser, upsertUser, updateUser, deleteUser } from 'src/app/store/users/users.actions';
-import { selectAllUsers, selectSelectedUser, selectUserEntities } from 'src/app/store/users/users.selectors';
+import { loadUsers, setSelectedUser, upsertUser, updateUser } from 'src/app/store/users/users.actions';
+import { selectAllUsers, selectSelectedUser } from 'src/app/store/users/users.selectors';
 import { User } from 'src/app/models/user.models';
+import { loadOrders } from 'src/app/store/orders/orders.actions';
 
 @Component({
   selector: 'app-users',
@@ -21,6 +22,7 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(loadUsers());
+    this.store.dispatch(loadOrders());
   }
 
   selectUser(id: number | null): void {

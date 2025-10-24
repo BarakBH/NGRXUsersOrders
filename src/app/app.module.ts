@@ -18,6 +18,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
+import { ordersReducer } from './store/orders/orders.reducer';
+import { OrdersEffects } from './store/orders/orders.effects';
 
 
 @NgModule({
@@ -35,10 +37,14 @@ import { MatDividerModule } from '@angular/material/divider';
     MatFormFieldModule,
     MatInputModule,
     MatDividerModule,
-    StoreModule.forRoot( { 
-      users: usersReducer 
+    StoreModule.forRoot({
+      users: usersReducer,
+      orders: ordersReducer
     }, {}),
-    EffectsModule.forRoot([UsersEffects]),
+    EffectsModule.forRoot([
+      UsersEffects,
+      OrdersEffects
+    ]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode(), trace: true, traceLimit: 25 })
   ],
   providers: [],
