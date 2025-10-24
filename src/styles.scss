@@ -1,4 +1,100 @@
-/* You can add global styles to this file, and also import other style files */
+/* ---------- Design tokens ---------- */
+:root {
+    --bg: #0f172a;
+    /* slate-900 */
+    --card: #111827;
+    /* gray-900 */
+    --card-2: #0b1220;
+    /* slightly darker */
+    --text: #e5e7eb;
+    /* gray-200 */
+    --muted: #9ca3af;
+    /* gray-400 */
+    --primary: #7c3aed;
+    /* violet-600 */
+    --primary-contrast: #ffffff;
+    --accent: #22d3ee;
+    /* cyan-400 */
+    --radius: 16px;
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* ---------- Baseline ---------- */
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    background: radial-gradient(1200px 800px at 10% 0%, rgba(124, 58, 237, 0.12), transparent 60%),
+        radial-gradient(1400px 1000px at 90% 10%, rgba(34, 211, 238, 0.10), transparent 60%),
+        var(--bg);
+    color: var(--text);
+    font: 14px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+/* ---------- Utility ---------- */
+.container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 24px 16px;
+}
+
+.grid {
+    display: grid;
+    gap: 16px;
+}
+
+.card {
+    background: linear-gradient(180deg, var(--card), var(--card-2));
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 16px;
+}
+
+.section-title {
+    margin: 0 0 12px;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: .2px;
+}
+
+.row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* ---------- Buttons (Material defaults but slightly refined) ---------- */
+button.mat-mdc-raised-button,
+button.mat-mdc-unelevated-button {
+    border-radius: 10px !important;
+}
+
+button[mat-flat-button],
+button[mat-raised-button] {
+    --mdc-filled-button-container-color: var(--primary) !important;
+    --mdc-filled-button-label-text-color: var(--primary-contrast) !important;
+}
+
+button[mat-stroked-button] {
+    border-radius: 10px !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+    color: var(--text) !important;
+}
+
+/* ---------- Forms ---------- */
+.mdc-text-field--outlined {
+    --mdc-outlined-text-field-outline-color: rgba(255, 255, 255, 0.15);
+}
+
+.mat-mdc-form-field {
+    width: 100%;
+}

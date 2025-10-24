@@ -1,13 +1,14 @@
 .user-name {
     display: flex;
-    gap: .5rem;
+    gap: 8px;
     align-items: baseline;
 
     .label {
-        opacity: .7;
+        opacity: .75;
     }
 
     .value {
-        font-size: 1.1rem;
+        font-size: 18px;
+        font-weight: 700;
     }
 }

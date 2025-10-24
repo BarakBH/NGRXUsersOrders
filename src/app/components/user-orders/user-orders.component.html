@@ -1,6 +1,4 @@
 <section class="user-orders" *ngIf="vm$ | async as vm">
-  <h2>User Orders</h2>
-
   <ng-container *ngIf="vm.userName; else noneSelected">
     <app-user-name [name]="vm.userName!"></app-user-name>
     <app-user-total [total]="vm.total"></app-user-total>

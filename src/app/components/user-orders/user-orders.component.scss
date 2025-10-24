@@ -1,6 +1,18 @@
 .user-orders {
-    padding: 1rem;
     display: grid;
-    grid-template-columns: 1fr;
-    gap: .5rem;
+    gap: 10px;
+
+    pre {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 12px;
+        padding: 12px;
+        margin: 0;
+        overflow: auto;
+    }
+
+    p {
+        margin: 0;
+        color: var(--muted);
+    }
 }
